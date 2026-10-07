@@ -1,0 +1,6 @@
+{
+  "name": "Singapore Air Quality & UV Monitor",
+  "description": "Real-time atmospheric monitoring for Singapore Haze (PSI), PM2.5, and UV Index with live NEA data integration and atmospheric visual effects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
