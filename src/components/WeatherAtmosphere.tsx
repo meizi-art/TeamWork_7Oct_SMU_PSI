@@ -95,14 +95,14 @@ export const WeatherAtmosphere: React.FC<WeatherAtmosphereProps> = ({
         vx: (Math.random() - 0.5) * (isSevereHaze ? 0.6 : 0.3) + 0.15,
         vy: (Math.random() - 0.5) * 0.2 - (isHazy ? 0.08 : 0.02),
         opacity: Math.random() * 0.7 + 0.3,
-        baseAlpha: isSevereHaze ? 0.45 : isHazy ? 0.28 : isHighUv ? 0.35 : 0.15,
+        baseAlpha: isSevereHaze ? 0.45 : isHazy ? 0.28 : isHighUv ? 0.35 : 0.2,
         color: isSevereHaze
-          ? 'rgba(217, 119, 6, ' // amber/smoke
+          ? 'rgba(180, 83, 9, ' // amber/smoke
           : isHazy
-          ? 'rgba(202, 138, 4, ' // murky yellow/gold
+          ? 'rgba(161, 98, 7, ' // murky yellow/gold
           : isHighUv
-          ? 'rgba(251, 191, 36, ' // gold solar flecks
-          : 'rgba(56, 189, 248, ', // clear cyan
+          ? 'rgba(217, 119, 6, ' // gold solar flecks
+          : 'rgba(2, 132, 199, ', // clear cyan
         angle: Math.random() * Math.PI * 2,
         angularSpeed: (Math.random() - 0.5) * 0.02,
       });
@@ -208,18 +208,18 @@ export const WeatherAtmosphere: React.FC<WeatherAtmosphereProps> = ({
             ? `rgba(180, 83, 9, ${0.18 * hazeIntensity})`
             : `rgba(161, 98, 7, ${0.12 * hazeIntensity})`
         );
-        smogGrad1.addColorStop(1, 'rgba(15, 23, 42, 0)');
+        smogGrad1.addColorStop(1, 'rgba(255, 255, 255, 0)');
         ctx.fillStyle = smogGrad1;
         ctx.fillRect(0, 0, width, height);
 
         // Low ground haze blanket
         const groundGrad = ctx.createLinearGradient(0, height * 0.4, 0, height);
-        groundGrad.addColorStop(0, 'rgba(15, 23, 42, 0)');
+        groundGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
         groundGrad.addColorStop(
           1,
           isSevereHaze
-            ? `rgba(120, 53, 15, ${0.28 * hazeIntensity})`
-            : `rgba(113, 63, 18, ${0.15 * hazeIntensity})`
+            ? `rgba(180, 83, 9, ${0.22 * hazeIntensity})`
+            : `rgba(161, 98, 7, ${0.12 * hazeIntensity})`
         );
         ctx.fillStyle = groundGrad;
         ctx.fillRect(0, 0, width, height);
@@ -265,16 +265,16 @@ export const WeatherAtmosphere: React.FC<WeatherAtmosphereProps> = ({
   }, [isHazy, isSevereHaze, isHighUv, isExtremeUv, effectivePsi, effectiveUv, effectivePm25]);
 
   // CSS Backdrop Theme based on Atmospheric Status
-  let backgroundStyle = 'from-slate-950 via-slate-900 to-slate-950';
+  let backgroundStyle = 'from-white via-slate-50 to-white';
 
   if (isSevereHaze) {
-    backgroundStyle = 'from-amber-950/40 via-stone-900/90 to-slate-950';
+    backgroundStyle = 'from-amber-50/80 via-orange-50/50 to-white';
   } else if (isHazy) {
-    backgroundStyle = 'from-yellow-950/25 via-slate-900/90 to-slate-950';
+    backgroundStyle = 'from-amber-50/60 via-yellow-50/30 to-white';
   } else if (isExtremeUv) {
-    backgroundStyle = 'from-amber-950/30 via-slate-900/95 to-slate-950';
+    backgroundStyle = 'from-amber-50/60 via-orange-50/30 to-white';
   } else if (isHighUv) {
-    backgroundStyle = 'from-sky-950/30 via-slate-900/95 to-slate-950';
+    backgroundStyle = 'from-sky-50/60 via-blue-50/30 to-white';
   }
 
   return (
@@ -287,8 +287,8 @@ export const WeatherAtmosphere: React.FC<WeatherAtmosphereProps> = ({
         <div
           className={`absolute inset-0 transition-opacity duration-1000 ${
             isSevereHaze
-              ? 'bg-amber-900/20 mix-blend-color-dodge backdrop-blur-[0.5px]'
-              : 'bg-yellow-900/10 mix-blend-color-dodge'
+              ? 'bg-amber-100/30 backdrop-blur-[0.5px]'
+              : 'bg-yellow-100/20'
           }`}
         />
       )}
