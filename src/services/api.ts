@@ -177,7 +177,13 @@ export async function fetchWeatherData(selectedRegion: SingaporeRegion = 'nation
 
 export async function checkBackendApiHealth(): Promise<ApiHealthResponse> {
   try {
-    const res = await fetch('/api/health');
+    let res = await fetch('/api/heath.js');
+    if (!res.ok) {
+      res = await fetch('/api/heath');
+    }
+    if (!res.ok) {
+      res = await fetch('/api/health');
+    }
     if (!res.ok) throw new Error(`Health check returned HTTP ${res.status}`);
     return await res.json();
   } catch (err) {

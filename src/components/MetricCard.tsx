@@ -76,7 +76,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
     (type === 'uv' && value >= 6);
 
   return (
-    <div className="relative group overflow-hidden rounded-2xl bg-white border border-slate-200/90 p-5 sm:p-6 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-slate-300 hover:shadow-md">
+    <div className="relative group overflow-hidden rounded-2xl bg-slate-900/80 border border-slate-800/80 p-5 sm:p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-slate-700 hover:shadow-2xl">
       {/* Top accent light reflection */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] opacity-70 transition-opacity"
@@ -88,14 +88,14 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/70 shadow-xs">
+          <div className="p-2.5 rounded-xl bg-slate-800/70 border border-slate-700/50 shadow-inner">
             {getIcon()}
           </div>
           <div>
-            <h3 className="font-semibold text-slate-900 text-base sm:text-lg tracking-tight">
+            <h3 className="font-semibold text-slate-100 text-base sm:text-lg tracking-tight">
               {getTitle()}
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400">
               {subLabel || (type === 'psi' ? '24-hour reading' : type === 'pm25' ? '1-hour concentration' : 'Current exposure')}
             </p>
           </div>
@@ -105,9 +105,9 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         <div
           className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase border"
           style={{
-            backgroundColor: `${color}15`,
+            backgroundColor: `${color}18`,
             color: color,
-            borderColor: `${color}35`,
+            borderColor: `${color}40`,
           }}
         >
           {isAlert && <AlertTriangle className="w-3.5 h-3.5 shrink-0" />}
@@ -124,17 +124,17 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           >
             {value}
           </span>
-          <span className="text-slate-500 font-medium text-sm sm:text-base">
+          <span className="text-slate-400 font-medium text-sm sm:text-base">
             {getUnit()}
           </span>
         </div>
 
         {secondaryValue !== undefined && (
           <div className="text-right">
-            <div className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">
+            <div className="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">
               {type === 'psi' ? 'PM2.5 Sub-Index' : type === 'pm25' ? '24-hr PM2.5' : 'Today Peak'}
             </div>
-            <div className="text-sm sm:text-base font-mono font-bold text-slate-800">
+            <div className="text-sm sm:text-base font-mono font-bold text-slate-200">
               {secondaryValue} {type === 'pm25' ? 'µg/m³' : ''}
             </div>
           </div>
@@ -143,17 +143,17 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 
       {/* Meter Bar */}
       <div className="mt-4 space-y-1.5">
-        <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden p-0.5 border border-slate-200/60">
+        <div className="h-2 w-full rounded-full bg-slate-800/90 overflow-hidden p-0.5 border border-slate-700/40">
           <div
             className="h-full rounded-full transition-all duration-700 ease-out"
             style={{
               width: `${Math.max(6, percentage)}%`,
               backgroundColor: color,
-              boxShadow: `0 0 10px ${color}60`,
+              boxShadow: `0 0 10px ${color}80`,
             }}
           />
         </div>
-        <div className="flex justify-between text-[10px] text-slate-400 font-mono">
+        <div className="flex justify-between text-[10px] text-slate-500 font-mono">
           <span>0</span>
           <span>{Math.round(maxScale / 2)}</span>
           <span>{maxScale}+</span>
@@ -161,24 +161,24 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       </div>
 
       {/* Description */}
-      <p className="mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+      <p className="mt-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
         {description}
       </p>
 
       {/* Pollutant Breakdown for PSI if available */}
       {type === 'psi' && breakdown && (
-        <div className="mt-4 pt-3 border-t border-slate-100 grid grid-cols-3 gap-2 text-center">
-          <div className="bg-slate-50 rounded-lg p-2 border border-slate-200/60">
-            <div className="text-[10px] text-slate-500 font-semibold">PM2.5 (24h)</div>
-            <div className="font-mono text-xs font-bold text-slate-800 mt-0.5">{breakdown.pm25_24h} µg/m³</div>
+        <div className="mt-4 pt-3 border-t border-slate-800/70 grid grid-cols-3 gap-2 text-center">
+          <div className="bg-slate-950/40 rounded-lg p-2 border border-slate-800/40">
+            <div className="text-[10px] text-slate-400 font-semibold">PM2.5 (24h)</div>
+            <div className="font-mono text-xs font-bold text-slate-200 mt-0.5">{breakdown.pm25_24h} µg/m³</div>
           </div>
-          <div className="bg-slate-50 rounded-lg p-2 border border-slate-200/60">
-            <div className="text-[10px] text-slate-500 font-semibold">PM10 (24h)</div>
-            <div className="font-mono text-xs font-bold text-slate-800 mt-0.5">{breakdown.pm10_24h} µg/m³</div>
+          <div className="bg-slate-950/40 rounded-lg p-2 border border-slate-800/40">
+            <div className="text-[10px] text-slate-400 font-semibold">PM10 (24h)</div>
+            <div className="font-mono text-xs font-bold text-slate-200 mt-0.5">{breakdown.pm10_24h} µg/m³</div>
           </div>
-          <div className="bg-slate-50 rounded-lg p-2 border border-slate-200/60">
-            <div className="text-[10px] text-slate-500 font-semibold">O3 (8h Max)</div>
-            <div className="font-mono text-xs font-bold text-slate-800 mt-0.5">{breakdown.o3_8h} µg/m³</div>
+          <div className="bg-slate-950/40 rounded-lg p-2 border border-slate-800/40">
+            <div className="text-[10px] text-slate-400 font-semibold">O3 (8h Max)</div>
+            <div className="font-mono text-xs font-bold text-slate-200 mt-0.5">{breakdown.o3_8h} µg/m³</div>
           </div>
         </div>
       )}

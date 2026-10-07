@@ -33,15 +33,15 @@ export const SingaporeMapGrid: React.FC<SingaporeMapGridProps> = ({
   ];
 
   return (
-    <div className="rounded-2xl bg-white border border-slate-200 p-5 backdrop-blur-md shadow-sm">
+    <div className="rounded-2xl bg-slate-900/80 border border-slate-800/80 p-5 backdrop-blur-md shadow-xl">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Compass className="w-4 h-4 text-cyan-600" />
-          <h4 className="text-sm font-bold text-slate-800 tracking-tight">
+          <Compass className="w-4 h-4 text-cyan-400" />
+          <h4 className="text-sm font-bold text-slate-200 tracking-tight">
             Singapore Regional Grid Map
           </h4>
         </div>
-        <span className="text-[11px] text-slate-500">Click any zone to focus</span>
+        <span className="text-[11px] text-slate-400">Click any zone to focus</span>
       </div>
 
       {/* Spatial Grid Layout representing Singapore's 5 Cardinal Zones */}
@@ -58,12 +58,12 @@ export const SingaporeMapGrid: React.FC<SingaporeMapGridProps> = ({
               onClick={() => onSelectRegion(zone.id)}
               className={`${zone.colClass} relative p-3 sm:p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
                 isSelected
-                  ? 'bg-slate-50 border-cyan-500 ring-2 ring-cyan-500/20 shadow-sm'
-                  : 'bg-slate-50/70 border-slate-200 hover:border-slate-300 hover:bg-slate-100/70'
+                  ? 'bg-slate-800 border-cyan-400 ring-2 ring-cyan-500/30 shadow-lg'
+                  : 'bg-slate-950/60 border-slate-800/90 hover:border-slate-700 hover:bg-slate-850'
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className={`text-xs font-bold ${isSelected ? 'text-cyan-800' : 'text-slate-800'}`}>
+                <span className={`text-xs font-bold ${isSelected ? 'text-cyan-300' : 'text-slate-300'}`}>
                   {zone.name}
                 </span>
                 <span
@@ -74,22 +74,22 @@ export const SingaporeMapGrid: React.FC<SingaporeMapGridProps> = ({
               </div>
 
               <div className="mt-2 flex items-baseline justify-between font-mono">
-                <span className="text-lg sm:text-xl font-extrabold text-slate-900">
+                <span className="text-lg sm:text-xl font-extrabold text-slate-100">
                   {data.psi}
                 </span>
-                <span className="text-[10px] text-slate-500 font-sans">PSI</span>
+                <span className="text-[10px] text-slate-400 font-sans">PSI</span>
               </div>
 
-              <div className="mt-1 flex items-center justify-between text-[11px] font-mono text-slate-500 pt-1.5 border-t border-slate-200">
+              <div className="mt-1 flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1.5 border-t border-slate-800/60">
                 <span>1h PM2.5</span>
-                <span className="font-semibold text-slate-800">{data.pm25_1h} µg</span>
+                <span className="font-semibold text-slate-200">{data.pm25_1h} µg</span>
               </div>
             </button>
           );
         })}
       </div>
 
-      <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-600">
+      <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-emerald-500" />
           <span>Good (&lt;50)</span>

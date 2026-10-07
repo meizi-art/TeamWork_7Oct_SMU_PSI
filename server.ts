@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import handleHeathRequest from './api/heath.js';
 import handleHealthRequest from './api/health.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,7 +12,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// API Health Check Routes
+// API Real-Time Data Accuracy & Health Routes
+app.get('/api/heath', handleHeathRequest);
+app.get('/api/heath.js', handleHeathRequest);
 app.get('/api/health', handleHealthRequest);
 app.get('/api/health.js', handleHealthRequest);
 

@@ -36,15 +36,15 @@ export const HealthAdvisory: React.FC<HealthAdvisoryProps> = ({ psi, pm25, uv })
   }
 
   return (
-    <div className="rounded-2xl bg-white border border-slate-200 p-5 backdrop-blur-md shadow-sm">
+    <div className="rounded-2xl bg-slate-900/80 border border-slate-800/80 p-5 backdrop-blur-md shadow-xl">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-cyan-600" />
-          <h4 className="text-sm font-bold text-slate-800 tracking-tight">
+          <Shield className="w-4 h-4 text-cyan-400" />
+          <h4 className="text-sm font-bold text-slate-200 tracking-tight">
             NEA Official Health Advisory
           </h4>
         </div>
-        <span className="text-[11px] text-slate-500 font-mono">
+        <span className="text-[11px] text-slate-400 font-mono">
           Based on current atmospheric readings
         </span>
       </div>
@@ -54,41 +54,41 @@ export const HealthAdvisory: React.FC<HealthAdvisoryProps> = ({ psi, pm25, uv })
         <div
           className={`p-4 rounded-xl border transition-all ${
             isAdvisoryElevated
-              ? 'bg-amber-50 border-amber-200 text-amber-900'
-              : 'bg-slate-50 border-slate-200 text-slate-700'
+              ? 'bg-amber-950/20 border-amber-800/40 text-amber-200'
+              : 'bg-slate-950/50 border-slate-800/80 text-slate-300'
           }`}
         >
           <div className="flex items-center gap-2 mb-2 font-semibold text-xs sm:text-sm">
-            <User className="w-4 h-4 text-cyan-600 shrink-0" />
-            <span className="text-slate-900 font-bold">Healthy Individuals</span>
+            <User className="w-4 h-4 text-cyan-400 shrink-0" />
+            <span className="text-slate-100">Healthy Individuals</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-600">{healthyAdvice}</p>
+          <p className="text-xs leading-relaxed text-slate-300">{healthyAdvice}</p>
         </div>
 
         {/* Vulnerable Groups */}
         <div
           className={`p-4 rounded-xl border transition-all ${
             isAdvisoryElevated
-              ? 'bg-rose-50 border-rose-200 text-rose-900'
-              : 'bg-slate-50 border-slate-200 text-slate-700'
+              ? 'bg-red-950/25 border-red-800/50 text-red-200'
+              : 'bg-slate-950/50 border-slate-800/80 text-slate-300'
           }`}
         >
           <div className="flex items-center gap-2 mb-2 font-semibold text-xs sm:text-sm">
-            <Heart className="w-4 h-4 text-rose-600 shrink-0" />
-            <span className="text-slate-900 font-bold">Vulnerable Groups (Elderly, Kids, Heart/Lung)</span>
+            <Heart className="w-4 h-4 text-rose-400 shrink-0" />
+            <span className="text-slate-100">Vulnerable Groups (Elderly, Kids, Heart/Lung)</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-600">{vulnerableAdvice}</p>
+          <p className="text-xs leading-relaxed text-slate-300">{vulnerableAdvice}</p>
         </div>
       </div>
 
       {/* Sun / UV Advisory */}
-      <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-        <Sun className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+      <div className="mt-3 p-3.5 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-start gap-3">
+        <Sun className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
         <div>
-          <div className="text-xs font-semibold text-slate-900 mb-0.5">
+          <div className="text-xs font-semibold text-slate-200 mb-0.5">
             Solar UV Exposure Advisory (UVI {uv})
           </div>
-          <p className="text-xs text-slate-600 leading-relaxed">{uvAdvice}</p>
+          <p className="text-xs text-slate-300 leading-relaxed">{uvAdvice}</p>
         </div>
       </div>
     </div>

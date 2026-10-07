@@ -78,18 +78,37 @@ export interface EndpointHealthStatus {
   status: number;
   statusText: string;
   ok: boolean;
+  accuracyPassed?: boolean;
   latencyMs: number;
   recordsCount: number;
   latestTimestamp: string | null;
+  dataAgeMinutes?: number | null;
+  freshness?: 'fresh' | 'acceptable' | 'stale' | 'offline' | 'unknown';
+  missingRegions?: string[];
+  rangeViolations?: string[];
   error: string | null;
 }
 
 export interface ApiHealthResponse {
   status: 'healthy' | 'degraded' | 'unhealthy';
+  verdict?: 'VERIFIED_ACCURATE' | 'ACCEPTABLE_ACCURACY' | 'ACCURACY_DEGRADED' | 'DETECTION_FAILED';
+  accuracyScore?: number;
   timestamp: string;
   service: string;
   totalEndpoints: number;
   healthyEndpoints: number;
+  endpointAudit?: {
+    total: number;
+    responsive: number;
+    accurate: number;
+  };
+  liveDataSummary?: {
+    averagePsi: number | null;
+    averagePm25OneHr: number | null;
+    currentUvIndex: number | null;
+  };
+  anomalies?: string[];
+  warnings?: string[];
   endpoints: EndpointHealthStatus[];
 }
 
